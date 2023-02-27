@@ -5,46 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canvas1</title>
-    <style>
-        .main {
-            margin: 0 auto;
-            display: flex;
-            width: 550px;
-        }
-
-        #canvas1 {
-            border: 1px solid black;
-            margin-right: 5px;
-        }
-
-        #ourColor {
-            margin-left: 5px;
-        }
-
-        .onbrush {
-            cursor: url("brush_min.png") 5 82, auto;
-        }
-
-        .oneraser {
-            cursor: url("eraser_min.png") 20 40, auto;
-        }
-
-        #reset {
-            background-color: blue;
-            color: #fff;
-            margin-top: 10px;
-            padding: 4px 20px;
-            border-radius: 5px;
-            border-color: #fff;
-        }
-    </style>
+    <title>Paint for daughter</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
-    <div class="main">
-        <canvas id="canvas1" width="500px" height="500px" class="onbrush">
+<body>    
+
+     <div class="main">
+    
+        <canvas id="canvas" width="500px" height="500px" class="onbrush">
         </canvas>
+        
         <form>
             <label for="ourColor">Color</label>
             <input type="color" class="color" id="ourColor"><br>
@@ -52,68 +23,11 @@
             <input type="range" step="1" min="1" max="20" id="radius" name="radius" value="6" /><br>
             <label for="er-radius">Eraser<span id="eraser"><img src='eraser.png'></span></label>
             <input type="range" step="1" min="1" max="20" id="er-radius" name="er-radius" value="10" /><br>
-            <input type="reset" value="Clear" id="reset" /><br>
+            <input type='file' id="input_foto">
+            <input type="button" value = "Load" class = "button" onclick='loadImage()'></button> 
+            <input type="reset" value="Clear" id="reset" class = "button"/>
         </form>
-    </div>
-    <script>
-        window.onload = () => {
-
-
-            let canvas = document.getElementById('canvas1');
-            let ctx = canvas.getContext('2d');
-            let color = document.getElementById('ourColor');
-            let r = document.getElementById('radius');
-            let er = document.getElementById('er-radius');
-            let flag = true;
-            let brushSpan = document.getElementById('brush');
-            let eraserSpan = document.getElementById('eraser');
-            let reset = document.getElementById('reset');
-
-
-            brushSpan.onclick = () => {
-                flag = true;
-                canvas.classList.remove("oneraser");
-                canvas.classList.add("onbrush");
-                console.log(flag);
-            }
-
-            eraserSpan.onclick = () => {
-                flag = false;
-                canvas.classList.remove("onbrush");
-                canvas.classList.add("oneraser");
-                console.log(flag);
-            }
-
-            //brush
-            if (flag) {
-                canvas.onmousedown = function (event) {
-                    canvas.onmousemove = function (event) {
-                        let x = event.offsetX;
-                        let y = event.offsetY;
-                        ctx.beginPath();
-                        ctx.arc(x - 5, y - 5, r.value, 2 * Math.PI, false)
-                        ctx.fillStyle = color.value;
-
-                        if (!flag) {  //erazer
-                            ctx.beginPath();
-                            r.value = null;
-                            ctx.clearRect(x - 5, y - 5, er.value, er.value);
-                        }
-                        ctx.fill();
-                    }
-
-                    reset.onclick = () => {
-                        ctx.clearRect(0, 0, 500, 500);
-                    }
-                }
-                canvas.onmouseup = function (event) {
-                    canvas.onmousemove = null;
-                }
-            }
-        }
-
-
-    </script>
+        <script src="script.js"></script>
 </body>
 
 </html>

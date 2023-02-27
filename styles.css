@@ -1,0 +1,32 @@
+.main {
+    margin: 0 auto;
+    display: flex;
+    width: 550px;
+}
+
+#canvas {
+    border: 1px solid black;
+    margin-right: 5px;
+}
+
+#ourColor {
+    margin-left: 5px;
+}
+
+.onbrush {
+    cursor: url("brush_min.png") 5 82, auto;
+}
+
+.oneraser {
+    cursor: url("eraser_min.png") 20 40, auto;
+}
+
+.button {
+    background-color: blue;
+    color: #fff;
+    margin-top: 10px;
+    padding: 4px 20px;
+    border-radius: 5px;
+    border-color: #fff;
+}
+
