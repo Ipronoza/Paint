@@ -81,7 +81,7 @@ function loadImage() {
             let canvas = document.getElementById("canvas");
             let ctx = canvas.getContext("2d");
             ctx.clearRect(0, 0, 500, 500);
-            ctx.drawImage(img, 0, 0);
+            ctx.drawImage(img, 0, 0, 390, 480);
 
             brushSpan.onclick = () => {
                 flag = true;
